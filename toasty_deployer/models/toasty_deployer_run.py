@@ -5,7 +5,7 @@ import requests
 from odoo import models, fields, api
 
 
-class ToastyDeployerRepo(models.Model):
+class ToastyDeployerRun(models.Model):
     _name = 'toasty.deployer.run'
     _description = 'Toasty Deployer Run'
     _order = 'created_at desc, id desc'
