@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_toasty_deployer_owner,toasty_deployer.owner,model_toasty_deployer_owner,base.group_user,1,1,1,1
+access_toasty_deployer_repo,toasty_deployer.repo,model_toasty_deployer_repo,base.group_user,1,1,1,1
+access_toasty_deployer_run,toasty_deployer.run,model_toasty_deployer_run,base.group_user,1,1,1,1
+access_toasty_deployer_sync_service,toasty_deployer.sync_service,model_toasty_deployer_sync_service,base.group_user,1,1,1,1
