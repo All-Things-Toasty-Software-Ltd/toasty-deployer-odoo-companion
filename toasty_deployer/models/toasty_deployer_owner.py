@@ -1,5 +1,9 @@
-from odoo impprt models, fields, api
+# -*- coding: utf-8 -*-
+# Part of Toasty Deployer. See LICENSE file for full copyright and licensing details.
+
 import requests
+from odoo import models, fields, api
+
 
 class ToastyDeployerOwner(models.Model):
     _name = 'toasty.deployer.owner'
