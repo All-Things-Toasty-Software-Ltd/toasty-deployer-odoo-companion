@@ -98,10 +98,12 @@ class ToastyDeployerRun(models.TransientModel):
                     if not run_id_str:
                         continue
 
+                    commit_sha = run_item.get('commit_sha') or 'HEAD'
                     raw_status = (run_item.get('status') or 'running').lower()
                     status = 'success' if raw_status == 'success' else 'failure' if raw_status == 'failure' else 'running'
-
+                    exit_code = run_item.get('exit_code') or 0
                     created_at = run_item.get('created_at') or fields.Datetime.now()
+                    logs = run_item.get('logs') or ''
 
                     # Find existing run or create new
                     run = Run.search([
@@ -112,13 +114,18 @@ class ToastyDeployerRun(models.TransientModel):
                     if run:
                         run.write({
                             'status': status,
+                            'exit_code': exit_code,
+                            'logs': logs,
                         })
                     else:
                         Run.create({
                             'name': run_id_str,
                             'repo_id': repo.id,
+                            'commit_sha': commit_sha,
                             'status': status,
+                            'exit_code': exit_code,
                             'created_at': created_at,
+                            'logs': logs,
                         })
 
                     total_synced_runs += 1
