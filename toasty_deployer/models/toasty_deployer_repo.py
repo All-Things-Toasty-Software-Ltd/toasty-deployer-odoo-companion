@@ -29,7 +29,6 @@ class ToastyDeployerRepo(models.Model):
                     'description': data.get('description'),
                 })
 
-
     @api.depends('name', 'owner_id.name')
     def _compute_github_url(self):
         for rec in self:
