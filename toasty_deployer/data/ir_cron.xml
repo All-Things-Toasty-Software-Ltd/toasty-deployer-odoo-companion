@@ -4,7 +4,7 @@
         <field name="name">Toasty Deployer: Sync Deployments</field>
         <field name="model_id" ref="model_toasty_deployer_sync_service"/>
         <field name="state">code</field>
-        <field name="code">model._cron_sync_all_deployments</field>
+        <field name="code">model._cron_sync_all_deployments()</field>
         <field name='interval_number'>5</field>
         <field name='interval_type'>minutes</field>
         <field name="nextcall" eval="DateTime.now().strftime('%Y-%m-%d %H:%M:%S')"/>

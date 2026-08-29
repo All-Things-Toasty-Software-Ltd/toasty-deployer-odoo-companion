@@ -6,15 +6,15 @@ from odoo import models, fields, api
 
 
 class ToastyDeployerRepo(models.Model):
-    _name = 'toasty.deployer.repo'
+    _name = 'toasty_deployer.repo'
     _description = 'Toasty Deployer Repo'
 
     name = fields.Char(string='Repository Name', required=True)
-    owner_id = fields.Many2one('toasty.deployer.owner', string='Owner', ondelete='cascade')
+    owner_id = fields.Many2one('toasty_deployer.owner', string='Owner', ondelete='cascade')
     description = fields.Char(string='Description', compute='_compute_description')
     github_url = fields.Char(string='GitHub URL', compute='_compute_github_url')
-    run_ids = fields.One2many('toasty.deployer.run', 'repo_id', string='Build Runs')
-    latest_run_id = fields.Many2one('toasty.deployer.run', string='Latest Run', compute='_compute_latest_run_id')
+    run_ids = fields.One2many('toasty_deployer.run', 'repo_id', string='Build Runs')
+    latest_run_id = fields.Many2one('toasty_deployer.run', string='Latest Run', compute='_compute_latest_run_id')
     latest_status = fields.Selection(related='latest_run_id.status', string='Latest Status')
 
     @api.depends('name', 'owner_id.name')

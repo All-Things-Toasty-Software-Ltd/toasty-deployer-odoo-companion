@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 
 class ToastyDeployerRun(models.TransientModel):
-    _name = 'toasty.deployer.sync_service'
+    _name = 'toasty_deployer.sync_service'
     _description = 'Toasty Deployer Sync Service'
 
     @api.model
@@ -82,7 +82,7 @@ class ToastyDeployerRun(models.TransientModel):
                 if not repo:
                     repo = Repo.create({
                         'name': repo_name,
-                        owner_id: owner.id,
+                        'owner_id': owner.id,
                     })
 
                 # GET /api/owners/<owner>/<repo>

@@ -6,14 +6,14 @@ from odoo import models, fields, api
 
 
 class ToastyDeployerOwner(models.Model):
-    _name = 'toasty.deployer.owner'
+    _name = 'toasty_deployer.owner'
     _description = 'Toasty Deployer Owner'
 
     name = fields.Char(string='Owner Name', required=True, index=True)
     github_url = fields.Char(string='GitHub Page', compute='_compute_github_url')
     avatar_url = fields.Char(string='Avatar Page', compute='_compute_avatar_url')
     bio = fields.Char(string='Bio / Description', compute='_compute_bio')
-    repo_ids = fields.One2many('toasty_deployer/repo', 'owner_id', string="Repositories")
+    repo_ids = fields.One2many('toasty_deployer.repo', 'owner_id', string="Repositories")
 
     @api.depends('name')
     def _compute_github_url(self):
