@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Top menu / dashboard icon -->
+    <menuitem name="Toasty Deployer"
+              id="toasty_deployer.menu_root"
+              groups="base.group_user"
+              web_icon="toasty_deployer,static/description/icon.png" sequence="10"/>
+
+    <!-- Top bar menus -->
+    <menuitem name="Owners"
+              id="toasty_deployer_owner_menu"
+              parent="toasty_deployer.menu_root"
+              action="toasty_deployer_owner_action"
+              groups="base.group_user"
+              sequence="10"/>
+
+    <menuitem name="Repositories"
+              id="toasty_deployer_repo_menu"
+              parent="toasty_deployer.menu_root"
+              action="toasty_deployer_repo_action"
+              groups="base.group_user"
+              sequence="20"/>
+
+    <menuitem name="Runs"
+              id="toasty_deployer_run_menu"
+              parent="toasty_deployer.menu_root"
+              action="toasty_deployer_run_action"
+              groups="base.group_user"
+              sequence="30"/>
+
+    <menuitem name="Configuration"
+              id="toasty_deployer_configuration"
+              parent="toasty_deployer.menu_root"
+              groups="base.group_system"
+              sequence="40"/>
+
+    <menuitem name="Settings"
+              id="toasty_deployer_settings_menu"
+              parent="toasty_deployer"
+              action="toasty_deployer_configuration_action"
+              groups="base.group_system"
+              sequence="10"/>
+</odoo>
