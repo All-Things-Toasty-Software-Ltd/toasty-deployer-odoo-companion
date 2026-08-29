@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_toasty_deployer_sync" model="ir.cron">
+        <field name="name">Toasty Deployer: Sync Deployments</field>
+        <field name="model_id" ref="model_toasty_deployer_sync_service"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_sync_all_deployments</field>
+        <field name='interval_number'>5</field>
+        <field name='interval_type'>minutes</field>
+        <field name="nextcall" eval="DateTime.now().strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>
