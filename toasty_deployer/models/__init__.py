@@ -3,6 +3,7 @@
 
 # toasty_deployer
 from . import toasty_deployer_owner
+from . import toasty_deployer_repo
 
 # inherit
 from . import res_config_settings

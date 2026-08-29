@@ -33,7 +33,7 @@ class ToastyDeployerOwner(models.Model):
                 })
 
     @api.depends('name')
-    def _compute_avatar_url(self):
+    def _compute_bio(self):
         for rec in self:
             if not rec.name:
                 continue
