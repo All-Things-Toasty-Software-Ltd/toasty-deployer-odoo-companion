@@ -10,14 +10,14 @@ class ToastyDeployerRun(models.Model):
     _description = 'Toasty Deployer Run'
     _order = 'created_at desc, id desc'
 
-    name = fields.Char(string='Run ID / Name', required=True)
+    name = fields.Char(string='Run ID / Name', required=True, readonly=True)
     repo_id = fields.Many2one('toasty_deployer.repo', string='Repository', ondelete='cascade', required=True)
-    commit_sha = fields.Char(string='Commit SHA')
+    commit_sha = fields.Char(string='Commit SHA', readonly=True)
     status = fields.Selection([
         ('running', 'Running'),
         ('success', 'Success'),
         ('failure', 'Failure'),
-    ], string='Status', default='running', required=True)
-    exit_code = fields.Integer(string='Exit Code')
-    created_at = fields.Datetime(string='Created At', default=fields.Datetime.now)
-    logs = fields.Text(string='Logs')
+    ], string='Status', default='running', required=True, readonly=True)
+    exit_code = fields.Integer(string='Exit Code', readonly=True)
+    created_at = fields.Datetime(string='Created At', default=fields.Datetime.now, readonly=True)
+    logs = fields.Text(string='Logs', readonly=True)

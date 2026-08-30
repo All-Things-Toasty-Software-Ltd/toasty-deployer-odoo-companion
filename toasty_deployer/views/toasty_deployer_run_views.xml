@@ -7,24 +7,52 @@
         <field name="arch" type="xml">
             <form string="Deployment Run">
                 <sheet>
-                    <div class="oe_title">
-                        <h1>
-                            <field name="name" readonly="1"/>
-                        </h1>
+                    <div class="row">
+                        <div class="col-md-3 border-end pe-3">
+                            <div class="mb-4">
+                                <h2>
+                                    <div class="text-muted small">Build</div>
+                                    <field name="name" readonly="1"/>
+                                </h2>
+                                <div class="text-muted small">Status</div>
+                                <field name="status" widget="badge"
+                                       decoration-success="status == 'success'"
+                                       decoration-danger="status == 'failure'"
+                                       decoration-info="status == 'running'"/>
+                            </div>
+                            <div class="mb-3">
+                                <div class="text-muted small">Repository</div>
+                                <field name="repo_id" readonly="1"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="text-muted small">Commit SHA</div>
+                                <field name="commit_sha" readonly="1"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="text-muted small">Exit Code</div>
+                                <field name="exit_code" readonly="1"/>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="text-muted small">Created At</div>
+                                <field name="created_at" readonly="1"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9 ps-4">
+                            <h4 class="mb-3">Deployment Logs</h4>
+
+                            <div class="bg-light border rounded p-3">
+                                <field name="logs"
+                                       widget="text"
+                                       readonly="1"
+                                       nolabel="1"
+                                       style="font-family: monospace; white-space: pre-wrap;"/>
+                            </div>
+                        </div>
                     </div>
-                    <group>
-                        <group>
-                            <field name="repo_id"/>
-                            <field name="commit_sha"/>
-                        </group>
-                        <group>
-                            <field name="status" widget="badge"
-                                   decoration-success="status == 'success'"
-                                   decoration-danger="status == 'failure'"
-                                   decoration-info="status == 'running'"/>
-                            <field name="created_at"/>
-                        </group>
-                    </group>
                 </sheet>
             </form>
         </field>
@@ -43,6 +71,7 @@
                        decoration-success="status == 'success'"
                        decoration-danger="status == 'failure'"
                        decoration-info="status == 'running'"/>
+                <field name="exit_code"/>
                 <field name="created_at"/>
             </list>
         </field>

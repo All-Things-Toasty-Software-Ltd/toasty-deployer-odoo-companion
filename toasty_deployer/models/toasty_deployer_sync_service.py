@@ -109,7 +109,14 @@ class ToastyDeployerRun(models.TransientModel):
                     status = 'success' if raw_status == 'success' else 'failure' if raw_status == 'failure' else 'running'
                     exit_code = run_item.get('exit_code') or 0
                     created_at = run_item.get('created_at') or fields.Datetime.now()
-                    logs = run_item.get('logs') or ''
+                    logs = ''
+                    try:
+                        res_runs = session.get(f"{api_base}/owners/{owner_name}/{repo_name}/{run_id_str}", timeout=15)
+                        res_runs.raise_for_status()
+                        run_details = res_runs.json()
+                        logs = run_details.get('logs') or ''
+                    except requests.exceptions.RequestException as e:
+                        _logger.warning("Toasty Deployer: Failed to fetch details for %s/%s/%s: %s", owner_name, repo_name, run_id_str, str(e),)
 
                     # Find existing run or create new
                     run = Run.search([

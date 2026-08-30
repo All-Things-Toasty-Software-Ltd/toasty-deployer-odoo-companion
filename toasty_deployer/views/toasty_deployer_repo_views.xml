@@ -36,11 +36,11 @@
                                 <field name="github_url" widget="url" string="GitHub Page"/>
                             </div>
                             <div class="text-muted small mt-3">
-                                <label for="description" string="Description:"/>
+                                <div class="text-muted small">Description</div>
                                 <field name="description" readonly="1"/>
                             </div>
                             <div class="small mt-3">
-                                <label for="latest_status" string="Latest Status:"/>
+                                <div class="text-muted small">Latest Status</div>
                                 <field name="latest_status" widget="badge"
                                        decoration-success="latest_status == 'success'"
                                        decoration-danger="latest_status == 'failure'"

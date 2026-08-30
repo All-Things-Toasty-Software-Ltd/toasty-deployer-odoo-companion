@@ -18,7 +18,7 @@
                                 <field name="github_url" widget="url" string="GitHub Page"/>
                             </div>
                             <div class="text-muted small mt-3">
-                                <label for="bio" string="Bio"/>
+                                <div class="text-muted small">Bio</div>
                                 <field name="bio" readonly="1"/>
                             </div>
                         </div>
