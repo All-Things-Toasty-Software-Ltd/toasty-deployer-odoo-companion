@@ -26,7 +26,7 @@ class ToastyDeployerRepo(models.Model):
             if res.status_code == 200:
                 data = res.json()
                 rec.write({
-                    'description': data.get('description'),
+                    'description': data.get('description') or '',
                 })
 
     @api.depends('name', 'owner_id.name')
