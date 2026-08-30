@@ -26,25 +26,28 @@
                 <sheet>
                     <div class="row">
                         <div class="col-md-3 border-end pe-3">
-                            <div class="text-center mb-3">
-                                <h3 class="mt-2">
+                            <div class="mb-4">
+                                <h2>
+                                    <div class="text-muted small">Repo</div>
                                     <field name="name" readonly="1"/>
-                                </h3>
-                                <div class="text-muted small mt-3">
-                                    <field name="owner_id"/>
-                                </div>
-                                <field name="github_url" widget="url" string="GitHub Page"/>
-                            </div>
-                            <div class="text-muted small mt-3">
-                                <div class="text-muted small">Description</div>
-                                <field name="description" readonly="1"/>
-                            </div>
-                            <div class="small mt-3">
+                                </h2>
                                 <div class="text-muted small">Latest Status</div>
                                 <field name="latest_status" widget="badge"
                                        decoration-success="latest_status == 'success'"
                                        decoration-danger="latest_status == 'failure'"
                                        decoration-info="latest_status == 'running'"/>
+                            </div>
+                            <div class="mb-3">
+                                <div class="text-muted small">Owner</div>
+                                <field name="owner_id" readonly="1"/>
+                            </div>
+                            <div class="mb-3">
+                                <div class="text-muted small">GitHub Page</div>
+                                <field name="github_url" widget="url" string="GitHub Page" readonly="1"/>
+                            </div>
+                            <div class="mb-3">
+                                <div class="text-muted small">Description</div>
+                                <field name="description" readonly="1"/>
                             </div>
                         </div>
 
@@ -59,6 +62,7 @@
                                            decoration-success="status == 'success'"
                                            decoration-danger="status == 'failure'"
                                            decoration-info="status == 'running'"/>
+                                    <field name="exit_code"/>
                                     <field name="created_at"/>
                                 </list>
                             </field>

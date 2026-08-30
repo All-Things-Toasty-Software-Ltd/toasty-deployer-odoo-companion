@@ -9,15 +9,21 @@
                 <sheet>
                     <div class="row">
                         <div class="col-md-3 border-end pe-3">
-                            <div class="text-center mb-3">
-                                <field name="avatar_image" widget="image" class="rounded-circle shadow-sm"
-                                       style="max-width: 120px;"/>
-                                <h3 class="mt-2">
+                            <div class="mb-4">
+                                <div class="text-center">
+                                    <field name="avatar_image" widget="image" class="rounded-circle shadow-sm"
+                                           style="max-width: 120px;" readonly="1"/>
+                                </div>
+                                <h2>
+                                    <div class="text-muted small">Name</div>
                                     <field name="name" readonly="1"/>
-                                </h3>
-                                <field name="github_url" widget="url" string="GitHub Page"/>
+                                </h2>
                             </div>
-                            <div class="text-muted small mt-3">
+                            <div class="mb-3">
+                                <div class="text-muted small">GitHub Page</div>
+                                <field name="github_url" widget="url" string="GitHub Page" readonly="1"/>
+                            </div>
+                            <div class="mb-3">
                                 <div class="text-muted small">Bio</div>
                                 <field name="bio" readonly="1"/>
                             </div>
