@@ -47,7 +47,7 @@ class ToastyDeployerRun(models.TransientModel):
             res_owners = session.get(f"{api_base}/owners", timeout=15)
             res_owners.raise_for_status()
             owners_data = res_owners.json().get('owners', [])
-        except requests.exception.RequestException as e:
+        except requests.exceptions.RequestException as e:
             _logger.error("Toasty Deployer: Failed to fetch owners list: %s", str(e))
             return False
 
@@ -68,7 +68,7 @@ class ToastyDeployerRun(models.TransientModel):
                 res_repos = session.get(f"{api_base}/owners/{owner_name}", timeout=15)
                 res_repos.raise_for_status()
                 repos_data = res_repos.json().get('repositories', [])
-            except requests.exception.RequestException as e:
+            except requests.exceptions.RequestException as e:
                 _logger.warning("Toasty Deployer: Failed to fetch repos for owner '%s': '%s'", owner_name, str(e))
                 continue
 
@@ -90,7 +90,7 @@ class ToastyDeployerRun(models.TransientModel):
                     res_runs = session.get(f"{api_base}/owners/{owner_name}/{repo_name}", timeout=15)
                     res_runs.raise_for_status()
                     runs_data = res_runs.json().get('runs', [])
-                except requests.exception.RequestException as e:
+                except requests.exceptions.RequestException as e:
                     _logger.warning("Toasty Deployer: Failed to fetch runs for %s/%s: %s", owner_name, repo_name,
                                     str(e))
                     continue
