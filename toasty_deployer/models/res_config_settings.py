@@ -10,4 +10,4 @@ class ResConfigSettings(models.TransientModel):
     toasty_deployer_base_url = fields.Char(string="Toasty Deployer Server URL",
                                            help="The Base URL where your Toasty Deployer instance is hosted.",
                                            readonly=False, required=True, config_parameter='toasty_deployer.base_url',
-                                           default="https://deployer.toastysoftware.co.uk")
+                                           default="https://deploy.toastysoftware.co.uk")
