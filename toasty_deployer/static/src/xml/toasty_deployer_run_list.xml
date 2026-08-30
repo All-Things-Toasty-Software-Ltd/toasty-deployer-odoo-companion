@@ -8,10 +8,7 @@
                     <span class="text-muted ms-2">(<t t-esc="state.runs.length"/>)</span>
                 </div>
             </div>
-            <div t-elif="!state.runs.length" class="toasty-deployer-run-list__message text-muted">
-                No deployment runs recorded yet.
-            </div>
-            <div t-else="" class="toasty-deployer-run-list__table">
+            <div class="toasty-deployer-run-list__table">
                 <div class="toasty-deployer-run-list__head">
                     <div class="toasty-deployer-run-list__expand-column"/>
                     <div>Run ID</div>
