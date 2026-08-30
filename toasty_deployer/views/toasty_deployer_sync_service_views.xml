@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="toasty_deployer_sync_service_form_view" model="ir.ui.view">
+        <field name="name">toasty_deployer.sync_service.form</field>
+        <field name="model">toasty_deployer.sync_service</field>
+        <field name="arch" type="xml">
+            <form string="Toasty Deployer Synchronisation">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Toasty Deployer Synchronisation</h1>
+                    </div>
+
+                    <p>
+                        Refresh all Toasty Deployer information and update with new runs.
+                    </p>
+
+                    <footer>
+                        <button name="action_sync"
+                                string="Sync Toasty Deployer"
+                                type="object"
+                                class="btn-primary"/>
+
+                        <button string="Cancel"
+                                special="cancel"
+                                class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="toasty_deployer_sync_service_action" model="ir.actions.act_window">
+        <field name="name">Toasty Deployer Sync</field>
+        <field name="res_model">toasty_deployer.sync_service</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

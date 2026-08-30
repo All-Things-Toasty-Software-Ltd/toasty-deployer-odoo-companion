@@ -138,3 +138,17 @@ class ToastyDeployerRun(models.TransientModel):
 
         _logger.info("Toasty Deployer: Sync finished successfully. Synced %d runs.", total_synced_runs)
         return True
+
+    def action_sync(self):
+        self._cron_sync_all_deployments()
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Toasty Deployer Sync',
+                'message': 'Toasty Deployer data has been synchronised successfully.',
+                'type': 'success',
+                'sticky': False,
+            },
+        }

@@ -52,4 +52,10 @@
               parent="toasty_deployer_sync"
               action="toasty_deployer_github_sync_action"
               sequence="10"/>
+
+    <menuitem name="Toasty Deployer Sync"
+              id="toasty_deployer_sync_service_menu"
+              parent="toasty_deployer_sync"
+              action="toasty_deployer_sync_service_action"
+              sequence="20"/>
 </odoo>
