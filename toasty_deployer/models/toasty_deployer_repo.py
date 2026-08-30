@@ -14,7 +14,7 @@ class ToastyDeployerRepo(models.Model):
     description = fields.Char(string='Description', compute='_compute_description')
     github_url = fields.Char(string='GitHub URL', compute='_compute_github_url')
     run_ids = fields.One2many('toasty_deployer.run', 'repo_id', string='Build Runs')
-    latest_run_id = fields.Many2one('toasty_deployer.run', string='Latest Run', compute='_compute_latest_run_id')
+    latest_run_id = fields.Many2one('toasty_deployer.run', string='Latest Run', compute='_compute_latest_run_id', store=True)
     latest_status = fields.Selection(related='latest_run_id.status', string='Latest Status')
 
     @api.depends('name', 'owner_id.name')
@@ -37,4 +37,4 @@ class ToastyDeployerRepo(models.Model):
     @api.depends('run_ids', 'run_ids.status', 'run_ids.created_at')
     def _compute_latest_run_id(self):
         for rec in self:
-            rec.latest_run_id = rec.run_ids.sorted(key=lambda r: r.created_at or '', reverse=True)[:1]
+            rec.latest_run_id = rec.run_ids[:1] or False
