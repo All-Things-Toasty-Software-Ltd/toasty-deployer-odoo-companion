@@ -4,6 +4,7 @@
 # inherit
 from . import res_config_settings
 # toasty_deployer
+from . import toasty_deployer_github_sync
 from . import toasty_deployer_owner
 from . import toasty_deployer_repo
 from . import toasty_deployer_run

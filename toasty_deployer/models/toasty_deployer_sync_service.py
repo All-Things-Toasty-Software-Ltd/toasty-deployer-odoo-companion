@@ -54,6 +54,7 @@ class ToastyDeployerRun(models.TransientModel):
         Owner = self.env['toasty_deployer.owner'].sudo()
         Repo = self.env['toasty_deployer.repo'].sudo()
         Run = self.env['toasty_deployer.run'].sudo()
+        GithubSync = self.env['toasty_deployer.github_sync'].sudo()
 
         total_synced_runs = 0
 
@@ -62,6 +63,7 @@ class ToastyDeployerRun(models.TransientModel):
             owner = Owner.search([('name', '=', owner_name)], limit=1)
             if not owner:
                 owner = Owner.create({'name': owner_name})
+                GithubSync.sync_owner(owner)
 
             # GET /api/owners/<owner>
             try:
@@ -84,6 +86,7 @@ class ToastyDeployerRun(models.TransientModel):
                         'name': repo_name,
                         'owner_id': owner.id,
                     })
+                    GithubSync.sync_repo(repo)
 
                 # GET /api/owners/<owner>/<repo>
                 try:
