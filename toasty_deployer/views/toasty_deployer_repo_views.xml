@@ -52,20 +52,7 @@
                         </div>
 
                         <div class="col-md-9 ps-4">
-                            <h4 class="mb-3">Deployment Runs</h4>
-
-                            <field name="run_ids">
-                                <list string="Deployment Runs" default_order="created_at desc">
-                                    <field name="name" string="Run ID"/>
-                                    <field name="commit_sha"/>
-                                    <field name="status" widget="badge"
-                                           decoration-success="status == 'success'"
-                                           decoration-danger="status == 'failure'"
-                                           decoration-info="status == 'running'"/>
-                                    <field name="exit_code"/>
-                                    <field name="created_at"/>
-                                </list>
-                            </field>
+                            <widget name="toasty_deployer_run_list"/>
                         </div>
                     </div>
                 </sheet>

@@ -7,7 +7,7 @@
     'website': 'https://www.toastysoftware.co.uk',
     'summary': "Track Toasty Deployer builds across GitHub repos inside Odoo",
     'version': '0.1.0',
-    'depends': ['base'],
+    'depends': ['base', 'web'],
 
     'currency': 'EUR',
     'price': 0.00,
@@ -29,6 +29,13 @@ Features GitHub profile mirroring, repo listing, and build terminal logs.
         'views/toasty_deployer_github_sync_views.xml',
         'views/toasty_deployer_menu_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'toasty_deployer/static/src/js/toasty_deployer_run_list.js',
+            'toasty_deployer/static/src/xml/toasty_deployer_run_list.xml',
+            'toasty_deployer/static/src/scss/toasty_deployer_run_list.scss',
+        ],
+    },
     'author': 'All Things Toasty Software Ltd',
     'license': 'LGPL-3',
     'installable': True,

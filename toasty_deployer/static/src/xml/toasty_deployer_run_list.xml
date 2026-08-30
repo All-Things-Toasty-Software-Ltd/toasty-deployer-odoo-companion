@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="toasty_deployer.ToastyDeployerRunList">
+        <div class="toasty-deployer-run-list">
+            <div class="toasty-deployer-run-list__toolbar">
+                <div>
+                    <span class="fw-bold">Deployment Runs</span>
+                    <span class="text-muted ms-2">(<t t-esc="state.runs.length"/>)</span>
+                </div>
+            </div>
+            <div t-elif="!state.runs.length" class="toasty-deployer-run-list__message text-muted">
+                No deployment runs recorded yet.
+            </div>
+            <div t-else="" class="toasty-deployer-run-list__table">
+                <div class="toasty-deployer-run-list__head">
+                    <div class="toasty-deployer-run-list__expand-column"/>
+                    <div>Run ID</div>
+                    <div>Commit SHA</div>
+                    <div>Status</div>
+                    <div>Exit Code</div>
+                    <div>Created At</div>
+                </div>
+                <t t-foreach="state.runs" t-as="run" t-key="run.id">
+                    <div class="toasty-deployer-run"
+                         t-att-class="{'toasty-deployer-run--expanded': this.isExpanded(run.id)}">
+                        <div class="toasty-deployer-run__row" t-on-click="(ev) => this.toggleLogs(run.id, ev)">
+                            <div class="toasty-deployer-run__expand-column">
+                                <button type="button" class="btn btn-link toasty-deployer-run__expand-button"
+                                        t-on-click.stop="(ev) => this.toggleLogs(run.id, ev)"
+                                        t-att-aria-expanded="this.isExpanded(run.id)"
+                                        t-att-title="this.isExpanded(run.id) ? 'Hide deployment logs' : 'Show deployment logs'">
+                                    <i t-att-class="this.isExpanded(run.id) ? 'oi oi-chevron-down' : 'oi oi-chevron-right'"/>
+                                </button>
+                            </div>
+
+                            <div class="toasty-deployer-run__cell">
+                                <span class="fw-medium">
+                                    <t t-esc="run.name"/>
+                                </span>
+                            </div>
+
+                            <div class="toasty-deployer-run__cell">
+                                <code t-if="run.commit_sha" class="toasty-deployer-run__commit">
+                                    <t t-esc="run.commit_sha"/>
+                                </code>
+
+                                <span t-else="" class="text-muted">
+                                    —
+                                </span>
+                            </div>
+
+                            <div class="toasty-deployer-run__cell">
+                                <span class="badge rounded-pill" t-att-class="this.getStatusBadgeClass(run.status)">
+                                    <t t-esc="run.status or 'Unknown'"/>
+                                </span>
+                            </div>
+
+                            <div class="toasty-deployer-run__cell">
+                                <span class="font-monospace" t-att-class="this.getExitCodeClass(run.exit_code)">
+                                    <t t-esc="run.exit_code ?? '—'"/>
+                                </span>
+                            </div>
+
+                            <div class="toasty-deployer-run__cell text-muted">
+                                <t t-esc="run.created_at or '—'"/>
+                            </div>
+                        </div>
+                        <div t-if="this.isExpanded(run.id)" class="toasty-deployer-run__expanded">
+                            <div class="bg-light border rounded p-3 toasty-deployer-logs">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <h6 class="mb-0">Deployment Logs</h6>
+                                    <span t-if="run.exit_code !== null and run.exit_code !== undefined"
+                                          class="text-muted small">
+                                        Exit Code:
+                                        <span class="font-monospace ms-1"
+                                              t-att-class="this.getExitCodeClass(run.exit_code)">
+                                            <t t-esc="run.exit_code"/>
+                                        </span>
+                                    </span>
+                                </div>
+                                <pre class="toasty-deployer-logs__content">
+                                    <t t-esc="run.logs or 'No log output recorded for this run.'"/>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

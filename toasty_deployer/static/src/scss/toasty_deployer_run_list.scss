@@ -1,0 +1,224 @@
+.toasty-deployer-run-list {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--o-border-color);
+  background-color: var(--o-view-background-color);
+  overflow: hidden;
+}
+
+// Header
+
+.toasty-deployer-run-list__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--o-border-color);
+}
+
+.toasty-deployer-run-list__toolbar .btn {
+  padding: 3px 8px;
+}
+
+.toasty-deployer-run-list__message {
+  padding: 32px;
+  text-align: center;
+}
+
+// Table
+
+.toasty-deployer-run-list__table {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+// Header row
+
+.toasty-deployer-run-list__head {
+  display: grid;
+  grid-template-columns:
+        32px
+        minmax(100px, 1fr)
+        minmax(100px, 1fr)
+        110px
+        100px
+        150px;
+
+  align-items: center;
+  width: 100%;
+  min-height: 34px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  background-color: var(--o-list-row-hover);
+  border-bottom: 1px solid var(--o-border-color);
+  color: var(--o-text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+// Run
+
+.toasty-deployer-run {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  border-bottom: 1px solid var(--o-border-color);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.toasty-deployer-run__row {
+  display: grid;
+  grid-template-columns:
+        32px
+        minmax(100px, 1fr)
+        minmax(100px, 1fr)
+        110px
+        100px
+        150px;
+
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--o-list-row-hover);
+  }
+}
+
+.toasty-deployer-run--expanded
+> .toasty-deployer-run__row {
+  background-color: var(--o-list-row-hover);
+}
+
+// Cells
+
+.toasty-deployer-run__cell {
+  min-width: 0;
+  padding: 6px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+}
+
+.toasty-deployer-run__commit {
+  padding: 0;
+  color: var(--o-text-muted);
+  background: transparent;
+  font-family: var(--o-font-family-monospace);
+  font-size: 0.75rem;
+}
+
+// Expand button
+
+.toasty-deployer-run-list__expand-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-width: 32px;
+}
+
+.toasty-deployer-run__expand-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: var(--o-text-muted);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--o-text-color);
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+// Status
+
+.toasty-deployer-run__cell .badge {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+// Expanded logs
+
+.toasty-deployer-run__expanded {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0 8px 8px 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.toasty-deployer-logs {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.toasty-deployer-logs__content {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  max-height: 350px;
+  margin: 0;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: #212529;
+  background-color: #ffffff;
+  border: 0;
+  font-family: var(--o-font-family-monospace);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (max-width: 900px) {
+  .toasty-deployer-run-list__head {
+    display: none;
+  }
+
+  .toasty-deployer-run__row {
+    grid-template-columns:
+            32px
+            minmax(0, 1fr)
+            auto;
+  }
+
+  .toasty-deployer-run__cell:nth-child(4),
+  .toasty-deployer-run__cell:nth-child(5) {
+    display: none;
+  }
+
+  .toasty-deployer-run__expanded {
+    padding-left: 8px;
+  }
+
+  .toasty-deployer-run__details {
+    flex-direction: column;
+  }
+}
