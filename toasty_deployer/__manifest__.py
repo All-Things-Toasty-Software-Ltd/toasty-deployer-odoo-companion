@@ -25,6 +25,7 @@ Features GitHub profile mirroring, repo listing, and build terminal logs.
         'views/toasty_deployer_owner_views.xml',
         'views/toasty_deployer_repo_views.xml',
         'views/toasty_deployer_run_views.xml',
+        'views/toasty_deployer_github_sync_views.xml',
         'views/toasty_deployer_menu_views.xml',
     ],
     'author': 'All Things Toasty Software Ltd',

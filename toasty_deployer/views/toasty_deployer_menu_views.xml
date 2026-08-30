@@ -40,4 +40,16 @@
               action="toasty_deployer_configuration_action"
               groups="base.group_system"
               sequence="10"/>
+
+    <menuitem name="Sync"
+              id="toasty_deployer_sync"
+              parent="toasty_deployer_configuration"
+              groups="base.group_system"
+              sequence="40"/>
+
+    <menuitem name="GitHub Sync"
+              id="toasty_deployer_github_sync_menu"
+              parent="toasty_deployer_sync"
+              action="toasty_deployer_github_sync_action"
+              sequence="10"/>
 </odoo>

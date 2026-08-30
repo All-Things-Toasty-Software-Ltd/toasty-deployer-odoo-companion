@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="toasty_deployer_github_sync_form_view" model="ir.ui.view">
+        <field name="name">toasty_deployer.github_sync.form</field>
+        <field name="model">toasty_deployer.github_sync</field>
+        <field name="arch" type="xml">
+            <form string="GitHub Synchronisation">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>GitHub Synchronisation</h1>
+                    </div>
+
+                    <p>
+                        Refresh owner and repository information from GitHub.
+                    </p>
+
+                    <footer>
+                        <button name="action_sync_all"
+                                string="Sync GitHub"
+                                type="object"
+                                class="btn-primary"/>
+
+                        <button string="Cancel"
+                                special="cancel"
+                                class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="toasty_deployer_github_sync_action" model="ir.actions.act_window">
+        <field name="name">GitHub Sync</field>
+        <field name="res_model">toasty_deployer.github_sync</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

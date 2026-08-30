@@ -103,3 +103,48 @@ class ToastyDeployerGithubSync(models.TransientModel):
                 owner.name,
                 e,
             )
+
+
+    @api.model
+    def sync_all(self):
+        Owner = self.env['toasty_deployer.owner'].sudo()
+        Repo = self.env['toasty_deployer.repo'].sudo()
+
+        owners = Owner.search([])
+
+        owner_count = 0
+        repo_count = 0
+
+        for owner in owners:
+            if self.sync_owner(owner):
+                owner_count += 1
+
+            for repo in owner.repo_ids:
+                if self.sync_repo(repo):
+                    repo_count += 1
+
+        _logger.info(
+            "Toasty Deployer: GitHub sync completed. "
+            "Synced %d owners and %d repositories.",
+            owner_count,
+            repo_count,
+        )
+
+        return {
+            'owners': owner_count,
+            'repositories': repo_count,
+        }
+
+    def action_sync_all(self):
+        self.sync_all()
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'GitHub Sync',
+                'message': 'GitHub data has been synchronised successfully.',
+                'type': 'success',
+                'sticky': False,
+            },
+        }
